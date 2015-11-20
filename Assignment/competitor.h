@@ -10,11 +10,12 @@
 
 #define NUM_TEAMS 17
 #define MAX_NAME_LENGTH 24
+#define POSTAL_ADDRES 7
 
 typedef struct competitor_status {
     
     char name[MAX_NAME_LENGTH];
-    char postal_addres[];
+    char postal_addres[POSTAL_ADDRES];
     int phone_number;
     int id;
     int cucumber;
