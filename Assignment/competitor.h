@@ -14,8 +14,6 @@
 
 typedef struct competitor_status {
     
-    //Test
-    
     int id;
     char name[MAX_TEXT_LENGTH];
     char addres[MAX_TEXT_LENGTH];
