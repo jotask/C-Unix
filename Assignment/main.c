@@ -14,6 +14,10 @@ int main(int argc, char** argv) {
     
     root = addCompetitorTable(filename, competition_name, competition_date);
     
+    /* Now printout the league table using our printing function */
+    
+    print_competition_table(root, competition_name, competition_date);
+    
     return (EXIT_SUCCESS);
 }
 
