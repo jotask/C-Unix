@@ -8,19 +8,19 @@
 #ifndef COMPETITOR_H
 #define	COMPETITOR_H
 
-#define NUM_TEAMS 17
-#define MAX_NAME_LENGTH 24
-#define POSTAL_ADDRES 7
+#define FILE_NAME "hort_2013.txt";
+
+#define MAX_TEXT_LENGTH 79
 
 typedef struct competitor_status {
     
-    char name[MAX_NAME_LENGTH];
-    char postal_addres[POSTAL_ADDRES];
-    int phone_number;
     int id;
-    int cucumber;
-    int carrot;
-    int bean;
+    char name[MAX_TEXT_LENGTH];
+    char addres[MAX_TEXT_LENGTH];
+    char phone_number[MAX_TEXT_LENGTH];
+    double cucumber;
+    double carrot;
+    double bean;
 
     struct competitor_status * left; /* links to teams with more or same points */
     struct competitor_status * right; /* links to teams with less points */
@@ -29,5 +29,10 @@ typedef struct competitor_status {
 
 typedef competitor_node * comp_node_ptr;
 
-#endif	/* COMPETITOR_H */
+comp_node_ptr addCompetitorTable(char * competitor_table_filename, char * competition_name, char * competition_date);
+comp_node_ptr read_competitor_node(int id, FILE * competitor_filename);
+void add_competitor(comp_node_ptr current, comp_node_ptr new);
 
+double calculateTotalPoints(comp_node_ptr node);
+
+#endif	/* COMPETITOR_H */
