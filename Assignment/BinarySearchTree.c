@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "competitor.h"
+#include "BinarySearchTree.h"
 
 comp_node_ptr addCompetitorTable(char * competitor_table_filename, char * competition_name, char * competition_date){
     
