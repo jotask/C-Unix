@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "competitor.h"
+#include "print.h"
 
 void print_competition_table(comp_node_ptr root, char * competition_name, char * competition_date){
     
@@ -53,7 +54,11 @@ double knowInches(double inches){
     
     double inches_result;
     
-    inches_result = inches;
+    int feet;
+    feet = knowFeets(inches);
+    
+    inches_result = (feet * 12) - inches;
     
     return inches_result;
+    
 }
