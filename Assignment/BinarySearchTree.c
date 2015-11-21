@@ -55,7 +55,6 @@ comp_node_ptr read_competitor_node(int id, FILE * competitor_filename){
         return NULL;
     } else {
         printf("Competitor entry for %s", tmp_node -> name);
-        // return tmp_node;
     }
     
     fscanf(competitor_filename, "%s", tmp_node -> name );
@@ -66,6 +65,8 @@ comp_node_ptr read_competitor_node(int id, FILE * competitor_filename){
     fscanf(competitor_filename, "%d %lf", &feet, &inches );
     fscanf(competitor_filename, "%d %lf", &feet, &inches );
     fscanf(competitor_filename, "%d %lf", &feet, &inches );
+    
+    return tmp_node;
     
 }
 
