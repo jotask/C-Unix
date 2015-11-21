@@ -4,6 +4,8 @@
 
 int main(int argc, char** argv) {
     
+    // Test
+    
     comp_node_ptr root;
     char competition_name[MAX_TEXT_LENGTH];
     char competition_date[MAX_TEXT_LENGTH];
