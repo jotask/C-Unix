@@ -18,9 +18,9 @@ typedef struct competitor_status {
     char name[MAX_TEXT_LENGTH];
     char addres[MAX_TEXT_LENGTH];
     char phone_number[MAX_TEXT_LENGTH];
-    double cucumber;
-    double carrot;
-    double bean;
+    float cucumber;
+    float carrot;
+    float bean;
 
     struct competitor_status * left; /* links to teams with more or same points */
     struct competitor_status * right; /* links to teams with less points */
@@ -34,5 +34,9 @@ comp_node_ptr read_competitor_node(int id, FILE * competitor_filename);
 void add_competitor(comp_node_ptr current, comp_node_ptr new);
 
 double calculateTotalPoints(comp_node_ptr node);
+
+void print_competition_nodes(comp_node_ptr node);
+double knowInches(double inches);
+int knowFeets(double inches);
 
 #endif	/* COMPETITOR_H */
