@@ -10,7 +10,7 @@ int main(int argc, char** argv) {
     
     char * filename = FILE_NAME;
     
-    //scanf("%s", filename);
+    /* scanf("%s", filename); */
     
     root = addCompetitorTable(filename, competition_name, competition_date);
     
