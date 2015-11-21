@@ -30,13 +30,7 @@ typedef struct competitor_status {
 typedef competitor_node * comp_node_ptr;
 
 comp_node_ptr addCompetitorTable(char * competitor_table_filename, char * competition_name, char * competition_date);
-comp_node_ptr read_competitor_node(int id, FILE * competitor_filename);
-void add_competitor(comp_node_ptr current, comp_node_ptr new);
 
-double calculateTotalPoints(comp_node_ptr node);
-
-void print_competition_nodes(comp_node_ptr node);
-double knowInches(double inches);
-int knowFeets(double inches);
+void print_competition_table(comp_node_ptr root, char * competition_name, char * competition_date);
 
 #endif	/* COMPETITOR_H */
