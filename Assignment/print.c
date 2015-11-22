@@ -1,8 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include "competitor.h"
 #include "print.h"
+
+/* 
+ * This file have functions for print information about the tree
+ * 
+ * File:   print.c
+ * Author: Jose Vives
+ *
+ * Created on 19 November 2015, 16:42
+ */
 
 void print_competition_table(comp_node_ptr root, char * competition_name, char * competition_date){
     
@@ -19,7 +27,7 @@ void print_competition_nodes(comp_node_ptr node){
     if(node -> left != NULL){
         print_competition_nodes(node -> left);
     }
-    double total = calculateTotalPoints(node);
+    double total = calculateTotalLength(node);
     int totalFeets = knowFeets(total);
     double totalInches =  knowInches(total);
     
