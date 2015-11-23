@@ -22,18 +22,16 @@ void print_competition_table(comp_node_ptr root, char * competition_name, char *
     
 }
 
-void print_competition_nodes(comp_node_ptr node){
+void printNode(comp_node_ptr node){
     
-    if(node -> left != NULL){
-        print_competition_nodes(node -> left);
-    }
     double total = calculateTotalLength(node);
     int totalFeets = knowFeets(total);
     double totalInches =  knowInches(total);
     
-    printf("%s --- %d --- %d ft %f in --- %d ft %f in --- %d ft %f in --- %d ft %f in \n",
+    printf("%-10s %5d %10s %10d ft %f in %5d ft %f in %5d ft %f in %5d ft %f in \n",
             node -> name,
             node -> id,
+            node -> phone_number,
             knowFeets(node -> cucumber),
             knowInches(node -> cucumber),
             knowFeets(node -> carrot),
@@ -43,6 +41,16 @@ void print_competition_nodes(comp_node_ptr node){
             totalFeets,
             totalInches
             );
+    
+}
+
+void print_competition_nodes(comp_node_ptr node){
+    
+    if(node -> left != NULL){
+        print_competition_nodes(node -> left);
+    }
+    
+    printNode(node);
     
     if(node -> right != NULL){
         print_competition_nodes(node -> right);
