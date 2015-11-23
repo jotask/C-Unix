@@ -14,9 +14,6 @@
 
 int main(int argc, char** argv) {
     
-    /* Print the system where the program is running */
-    system("hostname");
-    
     /* A pointer to the memory where the root node lives */
     comp_node_ptr root;
     
