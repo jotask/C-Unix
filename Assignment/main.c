@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
     /* A pointer to the memory where the root node lives */
     comp_node_ptr root;
     
-    /* The competition name for a competion */
+    /* The competition name for a competition */
     char competition_name[MAX_TEXT_LENGTH];
     
     /* The competition date */
