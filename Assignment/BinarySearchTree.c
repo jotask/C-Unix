@@ -43,12 +43,15 @@ comp_node_ptr addCompetitorTable(char * competitor_table_filename, char * compet
 
     root = read_competitor_node(id, competitor_table_file);
 
+    printNode(root);
+    
     return root;
     
     do{
         id++;
         tmp_node = read_competitor_node(id, competitor_table_file);
         add_competitor(root, tmp_node);
+        printNode(tmp_node);
     }while(tmp_node != NULL);
         
     fclose(competitor_table_file);
@@ -63,24 +66,22 @@ comp_node_ptr read_competitor_node(int id, FILE * competitor_filename){
     
     tmp_node = calloc(1, sizeof(tmp_node));
     
-    scan_status = fscanf(competitor_filename, "%s", tmp_node -> name );
+    scan_status = fscanf(competitor_filename, "%[^\n]\n", tmp_node -> name );
     
     if(scan_status == EOF){
         printf("End Of File. \n");
         return NULL;
-    } else {
-        printf("Competitor entry for %s \n", tmp_node -> name);
     }
     
-    fscanf(competitor_filename, "%s", tmp_node -> addres );
-    fscanf(competitor_filename, "%s", tmp_node -> phone_number );
+    fscanf(competitor_filename, "%[^\n]\n", tmp_node -> addres );
+    fscanf(competitor_filename, "%[^\n]\n", tmp_node -> phone_number );
     int feet;
     double inches;
     fscanf(competitor_filename, "%d %lf", &feet, &inches );
-    tmp_node -> carrot = convertToInches(feet, inches);
+    tmp_node -> cucumber = convertToInches(feet, inches);
     
     fscanf(competitor_filename, "%d %lf", &feet, &inches );
-    tmp_node ->cucumber = convertToInches(feet, inches);
+    tmp_node ->carrot = convertToInches(feet, inches);
     
     fscanf(competitor_filename, "%d %lf", &feet, &inches );
     tmp_node -> bean = convertToInches(feet, inches);
@@ -115,8 +116,6 @@ void add_competitor(comp_node_ptr current, comp_node_ptr new){
         if (current -> right == NULL) {
                 /* right link currently null so add directly */
                 current -> right = new;
-                printf("Just added %s to right link of %s\n",
-                        new -> name, current -> name );
         } else {
                 /* must add further down subtree so recurse */
                 add_competitor(current -> right, new);
@@ -127,8 +126,6 @@ void add_competitor(comp_node_ptr current, comp_node_ptr new){
         if (current -> left == NULL) {
                 /* left link currently null so add directly */
                 current -> left = new;
-                printf("Just added %s to left link of %s\n",
-                        new -> name, current -> name );
         } else {
                 /* must add further down subtree so recurse */
                 add_competitor(current -> left, new);
