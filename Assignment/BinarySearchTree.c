@@ -37,11 +37,14 @@ comp_node_ptr addCompetitorTable(char * competitor_table_filename, char * compet
         
     }
         
-    fscanf(competitor_table_file, "%s", competition_name);
-    fscanf(competitor_table_file, "%s", competition_date);
+    fscanf(competitor_table_file, "%[^\n]\n", competition_name);
+    
+    fscanf(competitor_table_file, "%[^\n]\n", competition_date);
 
     root = read_competitor_node(id, competitor_table_file);
 
+    return root;
+    
     do{
         id++;
         tmp_node = read_competitor_node(id, competitor_table_file);
@@ -63,20 +66,24 @@ comp_node_ptr read_competitor_node(int id, FILE * competitor_filename){
     scan_status = fscanf(competitor_filename, "%s", tmp_node -> name );
     
     if(scan_status == EOF){
-        printf("Problem reading file. \n");
+        printf("End Of File. \n");
         return NULL;
     } else {
-        printf("Competitor entry for %s", tmp_node -> name);
+        printf("Competitor entry for %s \n", tmp_node -> name);
     }
     
-    fscanf(competitor_filename, "%s", tmp_node -> name );
     fscanf(competitor_filename, "%s", tmp_node -> addres );
     fscanf(competitor_filename, "%s", tmp_node -> phone_number );
     int feet;
     double inches;
     fscanf(competitor_filename, "%d %lf", &feet, &inches );
+    tmp_node -> carrot = convertToInches(feet, inches);
+    
     fscanf(competitor_filename, "%d %lf", &feet, &inches );
+    tmp_node ->cucumber = convertToInches(feet, inches);
+    
     fscanf(competitor_filename, "%d %lf", &feet, &inches );
+    tmp_node -> bean = convertToInches(feet, inches);
     
     return tmp_node;
     
