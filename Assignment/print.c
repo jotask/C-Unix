@@ -24,6 +24,11 @@ void print_competition_table(comp_node_ptr root, char * competition_name, char *
 
 void printNode(comp_node_ptr node){
     
+    if(node == NULL){
+        printf("Can't print information from one NULL node. \n");
+        return;
+    }
+    
     double total = calculateTotalLength(node);
     int totalFeets = knowFeets(total);
     double totalInches =  knowInches(total);
