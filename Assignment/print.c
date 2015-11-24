@@ -35,13 +35,17 @@ void printNode(comp_node_ptr node){
     float total;
     total = totalLength(node);
     
-    printf("%-20s %-5d %20.2f %20.2f %20.2f %20.2f \n",
+    printf("%-20s %-5d %10dft %.2fin %10dft %.2fin %10dft %.2fin %10dft %.2fin \n",
             node -> name,
             node -> id,
-            node -> cucumber,
-            node -> carrot,
-            node -> bean,
-            total
+            knowFeet(node -> cucumber), 
+            knowInches(node -> cucumber),
+            knowFeet(node -> carrot), 
+            knowInches(node -> carrot),
+            knowFeet(node -> bean), 
+            knowInches(node -> bean),
+            knowFeet(total), 
+            knowInches(total)
             );
     
 }
@@ -51,17 +55,21 @@ int knowFeet(float data){
     int result;
     result = 0;
     
-    result = data * 0.083333;
+    result = data / 12;
     
     return result;
 }
 
 float knowInches(float data){
     
+    int feet;
     float result;
-    result = 0;
     
-    result = data - (0.083333 * data);
+    feet = knowFeet(data);
+    feet *= 12;
+    
+    result = 0;
+    result = data - feet;
     
     return result;
     
