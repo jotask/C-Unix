@@ -29,22 +29,13 @@ void printNode(comp_node_ptr node){
         return;
     }
     
-    double total = calculateTotalLength(node);
-    int totalFeets = knowFeets(total);
-    double totalInches =  knowInches(total);
-    
-    printf("%-10s %5d %10s %10d ft %f in %5d ft %f in %5d ft %f in %5d ft %f in \n",
+    printf("%s *** %d *** %s *** %.2f *** %.2f *** %.2f \n",
             node -> name,
             node -> id,
             node -> phone_number,
-            knowFeets(node -> cucumber),
-            knowInches(node -> cucumber),
-            knowFeets(node -> carrot),
-            knowInches(node -> carrot),
-            knowFeets(node -> bean),
-            knowInches(node -> bean),
-            totalFeets,
-            totalInches
+            node -> cucumber,
+            node -> carrot,
+            node -> bean
             );
     
 }
