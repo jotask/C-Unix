@@ -3,7 +3,6 @@
 #include <assert.h>
 #include "competitor.h"
 #include "BinarySearchTree.h"
-float totalLength(comp_node_ptr node);
 
 /* 
  * 
@@ -162,8 +161,6 @@ float totalLength(comp_node_ptr node){
     result += node -> carrot;
     result += node -> bean;
     result += node -> cucumber;
-    
-    printf("%f \n", result);
     
     return result;
     
