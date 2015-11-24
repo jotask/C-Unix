@@ -18,8 +18,8 @@ float knowInches(float data);
 void print_competition_table(comp_node_ptr root, char * competition_name, char * competition_date){
     
     printf("Competition: %s    Date: %s \n", competition_name, competition_date);
-    printf("%-10s %5s %20s %20s %20s %20s \n", "NAME", "Competitor number", "CUCUMBER", "CARROT", "BEAN", "TOTAL");
-    printf("================================================================================================================================\n");
+    printf("%-10s %5s %16s %18s %18s %20s \n", "NAME", "Competitor number", "CUCUMBER", "CARROT", "BEAN", "TOTAL");
+    printf("====================================================================================================================\n");
     
     print_competition_nodes(root);
     
@@ -35,7 +35,7 @@ void printNode(comp_node_ptr node){
     float total;
     total = totalLength(node);
     
-    printf("%-20s %-5d %10dft %.2fin %10dft %.2fin %10dft %.2fin %10dft %.2fin \n",
+    printf("%-20s %-5d %10dft %-3.2fin %10dft %-3.2fin %10dft %-3.2fin %10dft %-5.2fin\n",
             node -> name,
             node -> id,
             knowFeet(node -> cucumber), 
