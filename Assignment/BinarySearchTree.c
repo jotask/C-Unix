@@ -3,6 +3,7 @@
 #include <assert.h>
 #include "competitor.h"
 #include "BinarySearchTree.h"
+float totalLength(comp_node_ptr node);
 
 /* 
  * 
@@ -72,7 +73,7 @@ comp_node_ptr read_competitor_node(int id, FILE * competitor_filename){
         return NULL;
     }
     
-    char buffer[MAX_TEXT_LENGTH];
+    char *buffer = malloc(sizeof(char)*(MAX_TEXT_LENGTH + 1));
     
     tmp_node -> id = id;
     
@@ -88,6 +89,8 @@ comp_node_ptr read_competitor_node(int id, FILE * competitor_filename){
     
     fscanf(competitor_filename, "%[^\n]\n", buffer );
     tmp_node -> bean = converToInches(buffer);
+    
+    free(buffer);
     
     return tmp_node;
     
@@ -107,10 +110,12 @@ void add_competitor(comp_node_ptr current, comp_node_ptr new){
     }
     
     /* TODO */
+    float currentLength = totalLength(current);
+    float newLength = totalLength(new);
     
     /* Check if the new node total length is greater or equal to the 
      * current node for decide which direction we need go deeper in the tree */
-    if(current -> id <= new -> id){
+    if(currentLength <= newLength){
         /* we need to add new node on right subtree as
            it has less points than current node */
         if (current -> right == NULL) {
@@ -143,8 +148,25 @@ float converToInches(char * buffer){
     
     float result;
     
-    result += (float)feet;
+    result += (float)feet * 12;
     result += inches;
     
     return result;
+}
+
+float totalLength(comp_node_ptr node){
+    
+    float result;
+    result = 0;
+    
+    result += node -> carrot;
+    result += node -> bean;
+    result += node -> cucumber;
+    
+    printf("%f \n", result);
+    
+    return result;
+    
+    
+    
 }
