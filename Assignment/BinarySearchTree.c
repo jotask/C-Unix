@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 #include "competitor.h"
 #include "BinarySearchTree.h"
 
@@ -42,16 +43,11 @@ comp_node_ptr addCompetitorTable(char * competitor_table_filename, char * compet
     fscanf(competitor_table_file, "%[^\n]\n", competition_date);
 
     root = read_competitor_node(id, competitor_table_file);
-
-    printNode(root);
-    
-    return root;
     
     do{
         id++;
         tmp_node = read_competitor_node(id, competitor_table_file);
         add_competitor(root, tmp_node);
-        printNode(tmp_node);
     }while(tmp_node != NULL);
         
     fclose(competitor_table_file);
@@ -62,29 +58,36 @@ comp_node_ptr read_competitor_node(int id, FILE * competitor_filename){
     
     int scan_status;
     
+    int feet;
+    double inches;
+    
     competitor_node * tmp_node;
     
-    tmp_node = calloc(1, sizeof(tmp_node));
+    tmp_node = calloc(1, sizeof(*tmp_node));
     
     scan_status = fscanf(competitor_filename, "%[^\n]\n", tmp_node -> name );
     
     if(scan_status == EOF){
-        printf("End Of File. \n");
+        free(tmp_node);
         return NULL;
     }
     
+    char buffer[MAX_TEXT_LENGTH];
+    
+    tmp_node -> id = id;
+    
     fscanf(competitor_filename, "%[^\n]\n", tmp_node -> addres );
+    
     fscanf(competitor_filename, "%[^\n]\n", tmp_node -> phone_number );
-    int feet;
-    double inches;
-    fscanf(competitor_filename, "%d %lf", &feet, &inches );
-    tmp_node -> cucumber = convertToInches(feet, inches);
     
-    fscanf(competitor_filename, "%d %lf", &feet, &inches );
-    tmp_node ->carrot = convertToInches(feet, inches);
+    fscanf(competitor_filename, "%[^\n]\n", buffer );
+    tmp_node -> cucumber = converToInches(buffer);
     
-    fscanf(competitor_filename, "%d %lf", &feet, &inches );
-    tmp_node -> bean = convertToInches(feet, inches);
+    fscanf(competitor_filename, "%[^\n]\n", buffer );
+    tmp_node -> carrot = converToInches(buffer);
+    
+    fscanf(competitor_filename, "%[^\n]\n", buffer );
+    tmp_node -> bean = converToInches(buffer);
     
     return tmp_node;
     
@@ -102,15 +105,12 @@ void add_competitor(comp_node_ptr current, comp_node_ptr new){
     if(new == NULL){
         return;
     }
-    /* Calculate the total length for the current node */
-    double lengthCurrent = calculateTotalLength(current);
     
-    /* Calculate the total length for the new node we want to add */
-    double lengthNew = calculateTotalLength(new);
+    /* TODO */
     
     /* Check if the new node total length is greater or equal to the 
      * current node for decide which direction we need go deeper in the tree */
-    if(lengthCurrent <= lengthNew){
+    if(current -> id <= new -> id){
         /* we need to add new node on right subtree as
            it has less points than current node */
         if (current -> right == NULL) {
@@ -134,34 +134,17 @@ void add_competitor(comp_node_ptr current, comp_node_ptr new){
     
 }
 
-/*
- * Calculate the total length from one node summing all the length of
- * all the fruits his have
- */
-double calculateTotalLength(comp_node_ptr node){
+float converToInches(char * buffer){
     
-    double points;
-    points = 0;
+    int feet;
+    float inches;
     
-    points += node -> cucumber;
-    points += node -> carrot;
-    points += node -> bean;
+    sscanf(buffer, "%d %f", &feet, &inches);
     
-    return points;
+    float result;
     
-}
-
-/*
- * Convert feet and inches, to the sum of those values in inches
- */
-double convertToInches(int feets, double inches){
+    result += (float)feet;
+    result += inches;
     
-    double totalInches;
-    totalInches = 0;
-    
-    totalInches += ( feets * 12 );
-    totalInches += inches;
-    
-    return totalInches;
-    
+    return result;
 }
