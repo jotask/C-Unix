@@ -3,6 +3,8 @@
 #include "competitor.h"
 #include "print.h"
 
+char * printRealData(float data);
+
 /* 
  * This file have functions for print information about the tree
  * 
@@ -40,6 +42,25 @@ void printNode(comp_node_ptr node){
     
 }
 
+int knowFeet(float data){
+    
+    int result;
+    
+    result = (data / 12);
+    
+    return result;
+}
+
+float knowInches(float data){
+    
+    float result;
+    
+    result = (data / 12) - data;
+    
+    return result;
+    
+}
+
 void print_competition_nodes(comp_node_ptr node){
     
     if(node -> left != NULL){
@@ -51,26 +72,4 @@ void print_competition_nodes(comp_node_ptr node){
     if(node -> right != NULL){
         print_competition_nodes(node -> right);
     }
-}
-
-int knowFeets(double inches){
-    
-    int feets;
-    
-    feets = inches / 12;
-    
-    return feets;
-}
-
-double knowInches(double inches){
-    
-    double inches_result;
-    
-    int feet;
-    feet = knowFeets(inches);
-    
-    inches_result = (feet * 12) - inches;
-    
-    return inches_result;
-    
 }
