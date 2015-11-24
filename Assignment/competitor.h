@@ -35,4 +35,6 @@ void print_competition_table(comp_node_ptr root, char * competition_name, char *
 
 void printNode(comp_node_ptr node);
 
+float totalLength(comp_node_ptr node);
+
 #endif	/* COMPETITOR_H */
