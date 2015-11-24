@@ -9,8 +9,6 @@
 #define	PRINT_H
 
 void print_competition_nodes(comp_node_ptr node);
-int knowFeets(double inches);
-double knowInches(double inches);
 
 #endif	/* PRINT_H */
 
