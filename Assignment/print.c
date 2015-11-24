@@ -3,7 +3,8 @@
 #include "competitor.h"
 #include "print.h"
 
-char * printRealData(float data);
+int knowFeet(float data);
+float knowInches(float data);
 
 /* 
  * This file have functions for print information about the tree
@@ -16,9 +17,9 @@ char * printRealData(float data);
 
 void print_competition_table(comp_node_ptr root, char * competition_name, char * competition_date){
     
-    printf("Competition: %s. Date: %s \n", competition_name, competition_date);
-    printf("NAME --- Competition Number --- Cucumber --- Carrot --- Runner Bean --- Total Length \n");
-    printf("==========================================================================================\n");
+    printf("Competition: %s    Date: %s \n", competition_name, competition_date);
+    printf("%-10s %5s %20s %20s %20s %20s \n", "NAME", "Competitor number", "CUCUMBER", "CARROT", "BEAN", "TOTAL");
+    printf("================================================================================================================================\n");
     
     print_competition_nodes(root);
     
@@ -31,13 +32,16 @@ void printNode(comp_node_ptr node){
         return;
     }
     
-    printf("%s *** %d *** %s *** %.2f *** %.2f *** %.2f \n",
+    float total;
+    total = totalLength(node);
+    
+    printf("%-20s %-5d %20.2f %20.2f %20.2f %20.2f \n",
             node -> name,
             node -> id,
-            node -> phone_number,
             node -> cucumber,
             node -> carrot,
-            node -> bean
+            node -> bean,
+            total
             );
     
 }
@@ -45,8 +49,9 @@ void printNode(comp_node_ptr node){
 int knowFeet(float data){
     
     int result;
+    result = 0;
     
-    result = (data / 12);
+    result = data * 0.083333;
     
     return result;
 }
@@ -54,8 +59,9 @@ int knowFeet(float data){
 float knowInches(float data){
     
     float result;
+    result = 0;
     
-    result = (data / 12) - data;
+    result = data - (0.083333 * data);
     
     return result;
     
