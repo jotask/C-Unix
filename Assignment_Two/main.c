@@ -37,11 +37,23 @@ int main(int argc, char** argv) {
      */
     root = addCompetitorTable(filename, competition_name, competition_date);
     
-    /* Print the competitor table using our printing function */
+    /* Start the traverse functions*/
+    printf("================================================================== \n");
+    printf("             Printing traversing tree functions \n");
+    printf("================================================================== \n \n \n");
+    
+    /* Print the competition table. The function pointer is call inside this methods
+     * I did in this way for print the header of this table
+     */
     print_competition_table(root, competition_name, competition_date);
+    
+    printf("\n \n \n \n");
+    
+    /* Print the competitor table information. The function call is called inside
+     * this method, i did in this way for print the header information */
+    print_information_table(root, competition_name, competition_date);
     
     /* Return 0 because all run without any problem */
     return (EXIT_SUCCESS);
     
 }
-
