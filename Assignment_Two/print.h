@@ -14,16 +14,15 @@
 #ifndef PRINT_H
 #define PRINT_H
 
-void print_competition_table(comp_node_ptr root, char * competition_name, char * competition_date);
-
 void printNode(comp_node_ptr node);
 
 int knowFeet(float data);
 
 float knowInches(float data);
 
-void print_competition_nodes(comp_node_ptr node);
+void print_competition_nodes(comp_node_ptr node, void (*action)(comp_node_ptr));
 
+void print_node_information(comp_node_ptr node);
 
 #endif /* PRINT_H */
 

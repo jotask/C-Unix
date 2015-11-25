@@ -3,8 +3,6 @@
 #include "competitor.h"
 #include "print.h"
 
-void print_information_table(comp_node_ptr root, char * competition_name, char * competition_date);
-
 /* 
  * This file have functions for print information about the tree
  * 
@@ -16,6 +14,8 @@ void print_information_table(comp_node_ptr root, char * competition_name, char *
 
 /*
  * Print a all the table with the header table information
+ * This call the function for traverse the tree with a pointer to the
+ * function we want use for print the node
  * @param root
  *      the root node from we start to print all the information
  * @param competition_nodes
@@ -31,16 +31,13 @@ void print_competition_table(comp_node_ptr root, char * competition_name, char *
         return;
     }
     
-    void (*action)(comp_node_ptr);
-    action = printNode;
-    
     /* Print the table header */
     printf("Competition: %s    Date: %s \n", competition_name, competition_date);
     printf("%-10s %5s %16s %18s %18s %20s \n", "NAME", "Competitor number", "CUCUMBER", "CARROT", "BEAN", "TOTAL");
     printf("====================================================================================================================\n");
     
-    /* Start to walk to the tree */
-    print_competition_nodes(root, action);
+    /* Start to walk the tree passing the function we want use for print */
+    print_competition_nodes(root, &printNode);
     
 }
 
@@ -157,6 +154,17 @@ void print_node_information(comp_node_ptr node){
     
 }
 
+/*
+ * Print all the tree only showing the information about the competitor. This
+ * call the function for traverse the tree with a pointer to the function we want
+ * use for print the competitor
+ * @param root
+ *      the root node from we start to print all the information
+ * @param competition_nodes
+ *      The competition name for this competition
+ * @param competition_date
+ *      The competition date for this competition
+ */
 void print_information_table(comp_node_ptr root, char * competition_name, char * competition_date){
     
     /* Check if we are passing a null pointer for check if we have a tree */
@@ -165,14 +173,11 @@ void print_information_table(comp_node_ptr root, char * competition_name, char *
         return;
     }
     
-    void (*action)(comp_node_ptr);
-    action = print_node_information;
-    
     /* Print the table header */
     printf("Competition: %s    Date: %s \n", competition_name, competition_date);
     printf("Competitor     Contact    Details \n");
     
-    /* Start to walk to the tree */
-    print_competition_nodes(root, action);
+    /* Start to walk the tree passing the function we want use for print */
+    print_competition_nodes(root, &print_node_information);
     
 }

@@ -33,6 +33,10 @@ comp_node_ptr addCompetitorTable(char * competitor_table_filename, char * compet
 
 float totalLength(comp_node_ptr node);
 
+void print_competition_table(comp_node_ptr root, char * competition_name, char * competition_date);
+
+void print_information_table(comp_node_ptr root, char * competition_name, char * competition_date);
+
 
 
 #endif	/* COMPETITOR_H */
