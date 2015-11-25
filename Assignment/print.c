@@ -56,7 +56,7 @@ void printNode(comp_node_ptr node){
     float total;
     total = totalLength(node);
     
-    printf("%-20s %-5d %10dft  %5.2fin %10dft  %5.2fin %10dft  %5.2fin %10dft  %5.2fin\n",
+    printf("%-20s %-5d %10dft  %5.1fin %10dft  %5.1fin %10dft  %5.1fin %10dft  %5.1fin\n",
             node -> name,
             node -> id,
             knowFeet(node -> cucumber), 
