@@ -130,3 +130,24 @@ void print_competition_nodes(comp_node_ptr node){
         print_competition_nodes(node -> right);
     }
 }
+
+/*
+ * Prints the information from one competitor without printing the information
+ * about his fruits and vegetables length and his id.
+ * @param node
+ *      The node we want print his information
+ */
+void print_node_information(comp_node_ptr node){
+    
+    /* Check if the node we want print his information is NULL */
+    if(node == NULL){
+        printf("Can't print information from one NULL node. \n");
+        return;
+    }
+    
+    printf("\n");
+    printf("Competitor Name: %s \n", node -> name);
+    printf("Postal Address: %s \n", node -> addres);
+    printf("Telephone: %s \n", node -> phone_number);
+    
+}
