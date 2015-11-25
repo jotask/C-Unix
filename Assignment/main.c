@@ -23,11 +23,13 @@ int main(int argc, char** argv) {
     /* The competition date */
     char competition_date[MAX_TEXT_LENGTH];
     
-    /* Declare a variable for store the the file we want to load */
-    char * filename = FILE_NAME;
+    /* Declare a variable for store the the filename we want to load and
+     * allocate memory for this variable for prevent segmentation fault */
+    char * filename = (char*)malloc(FILENAME_LENGTH);
     
     /* ask the user for the file we want to load */
-    /* scanf("%s", filename); */
+    printf("Please enter the name of the file you want load: ");
+    scanf("%s", filename);
     
     /* Create the Tree from the file we want and keep a pointer to the 
      * root node from the tree
