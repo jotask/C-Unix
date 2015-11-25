@@ -31,7 +31,7 @@ void print_competition_table(comp_node_ptr root, char * competition_name, char *
     
     /* Print the table header */
     printf("Competition: %s    Date: %s \n", competition_name, competition_date);
-    printf("%-10s %5s %16s %18s %18s %20s \n", "NAME", "Competitor number", "CUCUMBER", "CARROT", "BEAN", "TOTAL");
+    printf("%-10s %10s %16s %20s %20s %20s \n", "NAME", "Competitor number", "CUCUMBER", "CARROT", "BEAN", "TOTAL");
     printf("====================================================================================================================\n");
     
     /* Start to walk to the tree */
