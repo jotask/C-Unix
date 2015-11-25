@@ -23,16 +23,16 @@
  */
 void print_competition_table(comp_node_ptr root, char * competition_name, char * competition_date){
     
+    /* Check if we are passing a null pointer for check if we have a tree */
+    if(root == NULL){
+        printf("The tree has not been created. Can't print the tree.");
+        return;
+    }
+    
     /* Print the table header */
     printf("Competition: %s    Date: %s \n", competition_name, competition_date);
     printf("%-10s %5s %16s %18s %18s %20s \n", "NAME", "Competitor number", "CUCUMBER", "CARROT", "BEAN", "TOTAL");
     printf("====================================================================================================================\n");
-    
-    /* Check if we are passing a null pointer for check if we have a tree */
-    if(root == NULL){
-        printf("The tree has not been create");
-        return;
-    }
     
     /* Start to walk to the tree */
     print_competition_nodes(root);
