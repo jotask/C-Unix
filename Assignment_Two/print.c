@@ -3,6 +3,8 @@
 #include "competitor.h"
 #include "print.h"
 
+void print_information_table(comp_node_ptr root, char * competition_name, char * competition_date);
+
 /* 
  * This file have functions for print information about the tree
  * 
@@ -29,13 +31,16 @@ void print_competition_table(comp_node_ptr root, char * competition_name, char *
         return;
     }
     
+    void (*action)(comp_node_ptr);
+    action = printNode;
+    
     /* Print the table header */
     printf("Competition: %s    Date: %s \n", competition_name, competition_date);
     printf("%-10s %5s %16s %18s %18s %20s \n", "NAME", "Competitor number", "CUCUMBER", "CARROT", "BEAN", "TOTAL");
     printf("====================================================================================================================\n");
     
     /* Start to walk to the tree */
-    print_competition_nodes(root);
+    print_competition_nodes(root, action);
     
 }
 
@@ -115,19 +120,19 @@ float knowInches(float data){
  * the node with less value (the last node in the left children from all nodes) to the node with the
  * greatest value (the last node in the right children from all nodes)
  */
-void print_competition_nodes(comp_node_ptr node){
+void print_competition_nodes(comp_node_ptr node, void (*action)(comp_node_ptr)){
     
     /* Check if have a left node. If have go to that node */
     if(node -> left != NULL){
-        print_competition_nodes(node -> left);
+        print_competition_nodes(node -> left, action);
     }
     
     /* Print this node*/
-    printNode(node);
+    action(node);
     
     /* Check if have a right node. If have go to that node*/
     if(node -> right != NULL){
-        print_competition_nodes(node -> right);
+        print_competition_nodes(node -> right, action);
     }
 }
 
@@ -149,5 +154,25 @@ void print_node_information(comp_node_ptr node){
     printf("Competitor Name: %s \n", node -> name);
     printf("Postal Address: %s \n", node -> addres);
     printf("Telephone: %s \n", node -> phone_number);
+    
+}
+
+void print_information_table(comp_node_ptr root, char * competition_name, char * competition_date){
+    
+    /* Check if we are passing a null pointer for check if we have a tree */
+    if(root == NULL){
+        printf("The tree has not been created. Can't print the tree.");
+        return;
+    }
+    
+    void (*action)(comp_node_ptr);
+    action = print_node_information;
+    
+    /* Print the table header */
+    printf("Competition: %s    Date: %s \n", competition_name, competition_date);
+    printf("Competitor     Contact    Details \n");
+    
+    /* Start to walk to the tree */
+    print_competition_nodes(root, action);
     
 }
