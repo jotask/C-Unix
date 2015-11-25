@@ -8,7 +8,7 @@
 #ifndef COMPETITOR_H
 #define	COMPETITOR_H
 
-#define FILE_NAME "hort_2013.txt";
+#define FILENAME_LENGTH 15
 
 #define MAX_TEXT_LENGTH 79
 
@@ -31,10 +31,8 @@ typedef competitor_node * comp_node_ptr;
 
 comp_node_ptr addCompetitorTable(char * competitor_table_filename, char * competition_name, char * competition_date);
 
-void print_competition_table(comp_node_ptr root, char * competition_name, char * competition_date);
-
-void printNode(comp_node_ptr node);
-
 float totalLength(comp_node_ptr node);
+
+
 
 #endif	/* COMPETITOR_H */
